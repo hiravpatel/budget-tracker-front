@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #0B0F1A;
+  --color-navy-900: #131A2A;
+  --color-navy-800: #1C243B;
+  --color-primary-400: #818CF8;
+  --color-primary-500: #6366F1;
+  --color-primary-600: #4F46E5;
+}
+
+@layer base {
+  html, body {
+    @apply antialiased h-full bg-navy-950 text-white selection:bg-primary-500/30;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
