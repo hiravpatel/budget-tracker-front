@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../api/axios';
 import { format } from 'date-fns';
-import { useAuthStore } from '../store/authStore';
 import { ArrowDownRight, ArrowUpRight, Wallet } from 'lucide-react';
 
 const CATEGORY_MAP: Record<string, { icon: string, color: string }> = {
@@ -22,7 +21,6 @@ const getCategoryStyle = (category: string) =>
   CATEGORY_MAP[category] || { icon: '🪙', color: 'bg-gray-500/20 text-gray-500' };
 
 const Dashboard = () => {
-  const { user } = useAuthStore();
 
   const { data: transactionsRes } = useQuery({
     queryKey: ['transactions', { limit: 10 }],
@@ -60,23 +58,8 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6 px-4 md:px-0">
-      {/* Header */}
-      <div className="flex justify-between items-center md:pb-4">
-        <div>
-          <h2 className="text-gray-400 text-sm md:text-base">Good morning 👋</h2>
-          <h1 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-            My Finances
-          </h1>
-        </div>
-        <div className="w-12 h-12 md:hidden rounded-full bg-gradient-to-br from-primary-400 to-purple-600 flex items-center justify-center p-[2px] shadow-lg shadow-primary-500/20">
-          <div className="w-full h-full bg-navy-950 rounded-full flex items-center justify-center">
-            <span className="text-xl font-bold text-white uppercase">{user?.name?.charAt(0) || 'U'}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Stats Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Dashboard Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
         {/* Main Balance Card */}
         <div className="md:col-span-2 bg-gradient-to-br from-primary-600 to-navy-800 rounded-3xl p-6 md:p-8 shadow-[0_10px_40px_rgba(79,70,229,0.3)] relative overflow-hidden border border-white/10">
           {/* Decorative shapes */}
